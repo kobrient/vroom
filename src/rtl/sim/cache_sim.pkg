@@ -42,7 +42,7 @@ endfunction
     ////////////////////////
 
 task f_wr_l2data_byte_blkng(t_byte b, t_paddr byte_addr);
-    top.core.l2.MEMORY[byte_addr] <= b;
+    top.core.l2.MEMORY[byte_addr] = b;
 endtask
 
 function automatic void f_wr_l2data_byte(t_byte b, t_paddr byte_addr);

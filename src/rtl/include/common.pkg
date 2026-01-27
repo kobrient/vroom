@@ -196,7 +196,7 @@ package common;
         t_byte [CL_SZ_BYTES-1:0]  B;
         t_hword[CL_SZ_HWORDS-1:0] H;
         t_word [CL_SZ_WORDS-1:0]  W;
-        t_word [CL_SZ_DWORDS-1:0] D;
+        t_dword [CL_SZ_DWORDS-1:0] D;
         logic[CL_SZ-1:0]       flat;
     } t_cl;
 

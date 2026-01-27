@@ -31,7 +31,7 @@ localparam NUM_ENTS = FE_FB_NUM_ENTS;
 //
 
 typedef logic[FE_FB_SET_BITS-1:0] t_setid;
-function t_setid get_setid(t_paddr pa);
+function automatic t_setid get_setid(t_paddr pa);
     get_setid = pa[FE_FB_SET_MSB:FE_FB_SET_LSB];
 endfunction
 
@@ -93,9 +93,12 @@ always_comb fe_req_mis_fb0 = fe_fb_req_fb0.valid & ~fe_req_hit_fb0;
 
 // Update FBUF on IC rsp
 
+t_fe_fb_static rsp_ent;
+t_setid setid_fb1;
+always_comb rsp_ent = e_static_nnn[ic_fb_rsp_nnn.id[FE_FB_NUM_ENTS_LG2-1:0]];
+always_comb setid_fb1 = get_setid(rsp_ent.req.addr);
+
 always_ff @(posedge clk) begin
-    t_fe_fb_static rsp_ent = e_static_nnn[ic_fb_rsp_nnn.id[FE_FB_NUM_ENTS_LG2-1:0]];
-    automatic t_setid setid_fb1 = get_setid(rsp_ent.req.addr);
     if (ic_fb_rsp_nnn.valid & ~rsp_ent.pf) begin
         FBUF[setid_fb1].data    <= ic_fb_rsp_nnn.data.flat;
         FBUF[setid_fb1].valid   <= 1'b1;
