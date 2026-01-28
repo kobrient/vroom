@@ -97,6 +97,7 @@ prf #(.NUM_ENTRIES(IPRF_NUM_ENTS), .NUM_REG_READS(IPRF_NUM_READS), .NUM_REG_WRIT
     `ifdef SIMULATION
     .simid_rn0_inst ( uinstr_rn0.SIMID ) ,
     .simid_rd0_inst ( uinstr_rn0.SIMID ) ,
+    .simid_rd1_inst ( uinstr_rn1.SIMID ) ,
     `endif
     .rename_ready_rn0 ( rename_ready_prf_rn0 ) ,
 
