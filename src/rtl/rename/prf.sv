@@ -39,6 +39,7 @@ module prf
     `ifdef SIMULATION
     input  t_simid       simid_rn0_inst,
     input  t_simid       simid_rd0_inst,
+    input  t_simid       simid_rd1_inst,
     `endif
     output t_prf_id      pdst_rn1,
     output t_prf_id      pdst_old_rn1
@@ -210,7 +211,7 @@ always @(posedge clk) begin
 
     for (int r=0; r<NUM_MAP_READS; r++) begin
         if (rdmap_nq_rd1[r]) begin
-            `UINFO(simid_rd0_inst, ("unit:RN func:rat_read gpr_id:%s psrc:%s psrc_pend:%0d", f_describe_gpr_addr(rdmap_gpr_rd1_inst[r]), f_describe_prf(rdmap_psrc_rd1[r]), rdmap_pend_rd1[r]))
+            `UINFO(simid_rd1_inst, ("unit:RN func:rat_read gpr_id:%s psrc:%s psrc_pend:%0d", f_describe_gpr_addr(rdmap_gpr_rd1_inst[r]), f_describe_prf(rdmap_psrc_rd1[r]), rdmap_pend_rd1[r]))
         end
     end
 
