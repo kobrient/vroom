@@ -14,7 +14,7 @@ LIB_FILES := $(wildcard $(LIB_DIR)/*.sv)
 SRC_FILES := $(shell cat $(RTL_F))
 
 VERILATOR := verilator -Wall -Wno-PINCONNECTEMPTY -Wno-UNUSEDSIGNAL -Wno-UNUSEDPARAM --assert --timing
-VL_TRACE_FLAGS := --trace-fst --trace-structs --trace-params
+VL_TRACE_FLAGS := --trace-fst --trace-structs --trace-params --trace-max-array 8192 --trace-max-width 8192
 
 WAVES := waves.fst
 
@@ -50,6 +50,7 @@ clean:
 gtkwave:
 	gtkwave ${WAVES} ../retch/vroom.gtkw 
 
+#Sufer, a better gtkwave, available through brew, surfer-project.org
 .PHONY: surfer
 surfer:
-	surfer ${WAVES}
+	surfer ${WAVES} -s rc/vroom.surf.ron
