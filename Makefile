@@ -15,7 +15,7 @@ SRC_FILES := $(shell cat $(RTL_F))
 
 IVERILOG  := iverilog -g2012
 VERILATOR := verilator -Wall -Wno-PINCONNECTEMPTY -Wno-UNUSEDSIGNAL -Wno-UNUSEDPARAM --assert --timing
-VL_TRACE_FLAGS := --trace-fst --trace-structs --trace-params
+VL_TRACE_FLAGS := --trace-fst --trace-structs --trace-params --trace-max-array 8192 --trace-max-width 8192
 
 VL_DEFINES := +define+SIMULATION=1 +define+ASSERT=1 #+define+DEBUGON=1
 VL_WAIVER_OUT := --waiver-output new_waivers.txt
